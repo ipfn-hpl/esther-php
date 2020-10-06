@@ -51,9 +51,10 @@
 
     $query  = "INSERT INTO esther_reports (shot_number, manager_id, start_time, ambient_temperature, ambient_pressure, ambient_humidity, ".
      "N2_bottle_initial, O2_bottle_initial, He1_bottle_initial, H_bottle_initial, He2_bottle_initial, N2_command_bottle_initial, ".
-    "bombe_volume, filling_pressure_sp, He_ratio_sp, H2_ratio_sp, O2_ratio_sp) ".
+    "bombe_volume, filling_pressure_sp, He_ratio_sp, H2_ratio_sp, O2_ratio_sp, series_id)".
      "VALUES (NULL, $manager_id, now(), $ambient_temp, $ambient_press, $ambient_hum, $PT101, $PT201, $PT301, $PT401, $PT501, $PT801, ".
-    "$bombe_volume, $filling_pressure_sp, $He_ratio_sp, $H2_ratio_sp, $O2_ratio_sp)";
+    "$bombe_volume, $filling_pressure_sp, $He_ratio_sp, $H2_ratio_sp, $O2_ratio_sp, 1)";
+
     $result = $connection->query($query);
 
     if (!$result) echo "INSERT  failed: $query<br>" .
