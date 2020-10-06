@@ -8,31 +8,21 @@
 
      <!-- http://purecss.io/ -->
      <!-- <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css"> -->
-	<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous"> 
+	<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="pure-release-0.6.0/pure-min.css"> -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="layouts/side-menu/styles.css">
 
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="/combo/1.18.13?/css/layouts/side-menu-old-ie.css">
 	<![endif]-->
-    <!--[if gt IE 8]><!-->
+    <!--[if gt IE 8]>
         <link rel="stylesheet" href="/combo/1.18.13?/css/layouts/side-menu.css">
-	<!--<![endif]-->
+	<![endif]  -->
 
 	<!--[if lt IE 9]>
 	    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
 	    <![endif]-->
-<!--
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	  ga('create', 'UA-41480445-1', 'purecss.io');
-	  ga('send', 'pageview');
-	</script>
--->
     <!--.
     <style>
   body {
@@ -362,6 +352,6 @@ echo '</div>';
          </div>
        </div>
      </div>
+<script src="/js/ui.js"></script>
    </body>
  </html>
-

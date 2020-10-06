@@ -186,8 +186,8 @@ elseif (isset($_POST['endrecord']) && isset($_POST['shot_id_post']))
     $mfc_601_HE1_sp=get_last_value($connection, 40);
     $mfc_601_HE2_sp=get_last_value($connection, 32);
 
-    $wire_voltage = get_post($connection, 'wire_voltage');
-    $wire_time = get_post($connection, 'wire_time');
+    // $wire_voltage = get_post($connection, 'wire_voltage');
+    // $wire_time = get_post($connection, 'wire_time');
     $rest_time = get_post($connection, 'rest_time');
     $range_kistler = get_post($connection, 'range_kistler');
     $ignition_regime_id= get_post($connection, 'ignition_regime_id');
@@ -201,7 +201,7 @@ elseif (isset($_POST['endrecord']) && isset($_POST['shot_id_post']))
     $query  = "UPDATE esther_reports SET end_time = now(), N2_bottle_final = $PT101, O2_bottle_final = $PT201, He1_bottle_final = $PT301, H_bottle_final=$PT401, ".
       "He2_bottle_final = $PT501, N2_command_bottle_final=$PT801, ".
       "pt901_end_s1=$pt901_end_s1, pt901_end_o=$pt901_end_o, pt901_end_he1=$pt901_end_he1, pt901_end_h=$pt901_end_h, pt901_end_he2=$pt901_end_he2, ".
-      "wire_voltage=$wire_voltage, wire_time=$wire_time, rest_time=$rest_time, ".
+      "rest_time=$rest_time, ".
       "mfc_201_O_sp=$mfc_201_O_sp, mfc_401_H_sp=$mfc_401_H_sp, mfc_601_HE1_sp=$mfc_601_HE1_sp, mfc_601_HE2_sp=$mfc_601_HE2_sp, ".
       "anomalies='$anomalies', delta_P_kistler=$delta_P_kistler, PLC_SW_Version='$plc_sw_ver', range_kistler=$range_kistler, ".
       "ignition_regime_id=$ignition_regime_id, ignition_source_id=$ignition_source_id ".
@@ -245,11 +245,9 @@ if($row[4] === NULL) { // end time not present
   <input type="hidden" name="endrecord" value="yes">
   <input type="hidden" name="shot_id_post" value="$shot_id">
   <p>Rest Time: <input type="number" name="rest_time" value="5" step="1" min="0"> (min)</p>
-  <p>Wire Voltage: <input type="number" name="wire_voltage" value="0" step="1" min="0"> (V)</p>
-  <p>Wire Time: <input type="number" name="wire_time" value="0" step="1" min="0"> (ms)</p>
   <p>Delta P Kistler: <input type="number" name="DeltaP_kistler" value="200" step="0.1" min="0"> (Bar)
-  Range Kistler: <input type="number" name="range_kistler" value="500" step="1.0" min="10"> (Bar)</p>
-  <p>PLC Software Version: <input type="text" name="plc_sw_ver" value="v3.14"></p>
+      Range Kistler: <input type="number" name="range_kistler" value="500" step="1.0" min="10"> (Bar)</p>
+  <p>PLC Software Version: <input type="text" name="plc_sw_ver" value="v4.04"></p>
   <p>Anomalies:<textarea name="anomalies" rows="4" cols="40"> None </textarea> </p>
   <p>Ignition Regime <select name="ignition_regime_id">
     <option value="1">No Ignition</option>
@@ -280,8 +278,9 @@ else{
   </select> </p>
 
   <p> Bombe Volume: <select name="bombe_volume">
-    <option value="1.86">1.86 (Liter)</option>
-    <option value="3.02" selected >3.02 (Liter)</option>
+    <option value="1.86"> 1.86 (Liter)</option>
+    <option value="3.02"> 3.02 (Liter)</option>
+    <option value="50.35" selected > 50.35 (Liter)</option>
   </select> </p>
 
   <p>AMBIENT TEMPERATURE <input type="number" name="ambient_temp" value="18.0" step="0.01" min="5"  max=”40″> (&#176;C)</p>
@@ -290,7 +289,7 @@ else{
   <p>FILLING PRESSURE <input type="number" name="filling_pressure_sp" value ="24.0" step="0.1" min="0"  max=”100″> (Bar)</p>
   <p>He RATIO <input type="number" name="He_ratio_sp" value="8.0" step="0.01" min="0"  max=”100″> </p>
   <p>H2 RATIO <input type="number" name="H2_ratio_sp" value="2.0" step="0.01" min="0"  max=”10″> </p>
-  <p>O2 RATIO <input type="number" name="O2_ratio_sp" value="1.0" step="0.01" min="0"  max=”10″> </p>
+  <p>O2 RATIO <input type="number" name="O2_ratio_sp" value="1.2" step="0.01" min="0"  max=”10″> </p>
   <input type="hidden" name="newrecord" value="yes">
   <input type="submit" value="INSERT NEW RECORD">
 </form>
