@@ -8,9 +8,10 @@
 
      <!-- http://purecss.io/ -->
      <!-- <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css"> -->
-	<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="pure-release-0.6.0/pure-min.css"> -->
-    <link rel="stylesheet" href="layouts/side-menu/styles.css">
+<!--	<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous"> 
+    < link rel="stylesheet" href="layouts/side-menu/styles.css"> -->
+    <link rel="stylesheet" href="node_modules/purecss/build/pure-min.css">
+    <link rel="stylesheet" href="node_modules/purecss/site/static/layouts/side-menu/styles.css">
 
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="/combo/1.18.13?/css/layouts/side-menu-old-ie.css">
@@ -77,8 +78,8 @@
 
        <div id="main">
 	 <div class="header">
-	   <h1> Esther Lab</h1>
-	   <h2>Bombe Pulse Report</h2>
+	   <h1> IST-IPFN  Lab</h1>
+	   <h2> Esther Pulse Reports </h2>
 
 	 </div>
 
@@ -113,13 +114,14 @@ function pp_ref($pr, $tempC) {
     $shot_id=$_POST['shot_id'];
   }
   else{
-   $query  = "SELECT shot_number FROM esther_reports ORDER BY shot_number DESC LIMIT 1";
+   $query  = "SELECT shot_number, experiment_number FROM esther_reports ORDER BY shot_number DESC LIMIT 1";
    $result = $connection->query($query);
-   $row = $result->fetch_array(MYSQLI_NUM);
+   $row = $result->fetch_array(MYSQLI_BOTH);
    $shot_id=$row[0];
+   $experiment_number=$row['experiment_number'];
   }
 
-echo "Fetching report: $shot_id ";
+echo "Fetching Experiment: $experiment_number ";
 
 echo <<<_END
   <form class="pure-form" action="show_report.php" method="post">
@@ -132,7 +134,7 @@ _END;
   $result = $connection->query($query);
 
   if (!$result) die ("Database access failed: " . $connection->error);
-  $row = $result->fetch_array(MYSQLI_NUM);
+  $row = $result->fetch_array(MYSQLI_BOTH);
 
 $timestamp = strtotime($row[3]);
 $date = date('d-m-Y', $timestamp);
@@ -287,12 +289,10 @@ echo <<<_END
     ambient_temperature: $row[5] (&#176;C)
     ambient_pressure:    $row[6] (mBar)
     ambient_humidity:    $row[7] (&#37;)
-    Wire Voltage: $row[26] (V)     Wire time: $row[27] (ms)
     He/H2/O2 Ratio:     $row[39]:$row[40]:$row[41]
     delta_P_kistler:     $row[28] (Bar)  Range Kistler:  $row[36] (Bar)
     PLC_SW_Version:      $row[29]
-    Ignition Source:     $row[45]
-    Ignition Regime:     $row[46]
+    Ignition Source:     $row[45] Ignition Regime:     $row[46]
 
   $ppO2d  $row[31]\t $ppHeId $row[33] \t $ppH2d $row[32] \t $ppHeIId $row[34]
 </pre>
@@ -302,6 +302,8 @@ echo <<<_END
 <div class="pure-g">
   <div class="pure-u-1-2"><p>
 _END;
+
+// Wire Voltage: $row[26] (V)     Wire time: $row[27] (ms)
 
     //vHe0=$vHe0
     //vO2=$vO2

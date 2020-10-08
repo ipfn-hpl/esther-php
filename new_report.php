@@ -51,9 +51,9 @@
 
     $query  = "INSERT INTO esther_reports (shot_number, manager_id, start_time, ambient_temperature, ambient_pressure, ambient_humidity, ".
      "N2_bottle_initial, O2_bottle_initial, He1_bottle_initial, H_bottle_initial, He2_bottle_initial, N2_command_bottle_initial, ".
-    "bombe_volume, filling_pressure_sp, He_ratio_sp, H2_ratio_sp, O2_ratio_sp, series_id)".
+    "bombe_volume, filling_pressure_sp, He_ratio_sp, H2_ratio_sp, O2_ratio_sp, experiment_number, series_id )".
      "VALUES (NULL, $manager_id, now(), $ambient_temp, $ambient_press, $ambient_hum, $PT101, $PT201, $PT301, $PT401, $PT501, $PT801, ".
-    "$bombe_volume, $filling_pressure_sp, $He_ratio_sp, $H2_ratio_sp, $O2_ratio_sp, 1)";
+    "$bombe_volume, $filling_pressure_sp, $He_ratio_sp, $H2_ratio_sp, $O2_ratio_sp, -99, 1)";
 
     $result = $connection->query($query);
 
@@ -205,8 +205,8 @@ elseif (isset($_POST['endrecord']) && isset($_POST['shot_id_post']))
       "rest_time=$rest_time, ".
       "mfc_201_O_sp=$mfc_201_O_sp, mfc_401_H_sp=$mfc_401_H_sp, mfc_601_HE1_sp=$mfc_601_HE1_sp, mfc_601_HE2_sp=$mfc_601_HE2_sp, ".
       "anomalies='$anomalies', delta_P_kistler=$delta_P_kistler, PLC_SW_Version='$plc_sw_ver', range_kistler=$range_kistler, ".
-      "ignition_regime_id=$ignition_regime_id, ignition_source_id=$ignition_source_id ".
-      "WHERE  shot_number=$shot_id";
+      "ignition_regime_id=$ignition_regime_id, ignition_source_id=$ignition_source_id, experiment_number=$shot_id ".
+      " WHERE  shot_number=$shot_id";
     echo $query;
     $result = $connection->query($query);
     if (!$result) die ("Database update failed: " . $connection->error);
