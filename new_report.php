@@ -248,7 +248,7 @@ if($row[4] === NULL) { // end time not present
   <p>Rest Time: <input type="number" name="rest_time" value="5" step="1" min="0"> (min)</p>
   <p>Delta P Kistler: <input type="number" name="DeltaP_kistler" value="200" step="0.1" min="0"> (Bar)
       Range Kistler: <input type="number" name="range_kistler" value="500" step="1.0" min="10"> (Bar)</p>
-  <p>PLC Software Version: <input type="text" name="plc_sw_ver" value="v4.04"></p>
+  <p>PLC Software Version: <input type="text" name="plc_sw_ver" value="v4.5.N2"></p>
   <p>Anomalies:<textarea name="anomalies" rows="4" cols="40"> None </textarea> </p>
   <p>Ignition Regime <select name="ignition_regime_id">
     <option value="1">No Ignition</option>
@@ -260,8 +260,8 @@ if($row[4] === NULL) { // end time not present
   <p>Ignition Source<select name="ignition_source_id">
     <option value="1">Full Wire</option>
     <option value="2">Half Wire</option>
-    <option value="3" selected>Laser Ignition no Lens</option>
-    <option value="4">Laser Ignition with Lens</option>
+    <option value="3" >Laser Ignition no Lens</option>
+    <option value="4" selected>Laser Ignition with Lens</option>
   </select> </p>
   <input type="submit" value="END RECORD">
 </form>
